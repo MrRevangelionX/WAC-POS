@@ -35,7 +35,17 @@ const connection = require('./database/db');
 
 app.get('/', (req, res)=>{
     if (req.session.auth_token) {
-        res.render('index')
+        connection.query('SELECT * FROM main_screen', function(error,results,fields){
+            if(error){
+                throw error
+            }
+            results.forEach(result => {
+                console.log(result);
+            });
+            res.render('index', {
+                Botones: results
+            });
+        })
     }else{
         res.redirect('/login')
     }
@@ -43,6 +53,61 @@ app.get('/', (req, res)=>{
 app.get('/login', (req, res)=>{
     res.render('login')
 })
+
+app.post('/auth', (req, res)=>{
+    const user = req.body.user;
+    const pass = req.body.pass;
+    console.log("Usuario: " + user + " " + "Password: " + pass);
+    if (user && pass) {
+		connection.query('SELECT * FROM WAC.wac_usuarios WHERE username = ? AND pass = ?;', [user, pass], (err, results, fields)=> {
+            if(err){
+                throw err;
+            }else{
+                if( results.length == 0 || results == null ) {    
+                    res.render('login', {
+                            alert: true,
+                            alertTitle: "Error",
+                            alertMessage: "USUARIO y/o PASSWORD incorrectas",
+                            alertIcon:'error',
+                            showConfirmButton: true,
+                            timer: false,
+                            ruta: 'login'    
+                        });
+                }else{
+                    console.log("SI LOGGUEO");
+                    req.session.auth_token = true;
+                    req.session.name = results[0].username
+                    req.session.name = results[0].usrName
+                    req.session.name = results[0].usrRole
+                    res.render('login', {
+                        alert: true,
+                        alertTitle: "CORRECTO",
+                        alertMessage: "Inicio Sesion Correctamente!",
+                        alertIcon:'success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        ruta: ''    
+                    });
+                }
+            }
+		});
+	}
+})
+
+//función para limpiar la caché luego del logout
+app.use(function(req, res, next) {
+    if (!req.user)
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    next();
+});
+
+ //Logout
+//Destruye la sesión.
+app.get('/logout', function (req, res) {
+	req.session.destroy(() => {
+	  res.redirect('/') // siempre se ejecutará después de que se destruya la sesión
+	})
+});
 
 app.listen(3000, (req, res)=>{
     console.log('Server Running in http://localhost:3000/');
