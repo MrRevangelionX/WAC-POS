@@ -18,7 +18,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 
 // INVOCAMOS A bcryptjs
-const bcryptjs = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 
 // VAR. DE SESIONES
 const session = require('express-session');
@@ -32,8 +32,16 @@ app.use(session({
 const connection = require('./database/db');
 
 // ESTABLECIENDO RUTAS
+
 app.get('/', (req, res)=>{
-    res.render('index')
+    if (req.session.auth_token) {
+        res.render('index')
+    }else{
+        res.redirect('/login')
+    }
+})
+app.get('/login', (req, res)=>{
+    res.render('login')
 })
 
 app.listen(3000, (req, res)=>{

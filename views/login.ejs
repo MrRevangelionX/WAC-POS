@@ -9,16 +9,16 @@
 </head>
 <body>
     <header>
-        <img src="/img/Logo.jpg" alt="Wings and Chunks" class="header_logo">
+        <img src="/img/logo.jpg" alt="Wings and Chunks" class="header_logo">
     </header>
     <main class="container">
-        <form class="form" action="login" method="post">
+        <form class="form" action="/auth" method="post">
             <h2>INICIO</h2>
             <div>
-                <input type="text" class="form-control" id="user" aria-describedby="user" placeholder="Usuario" required>
+                <input type="text" class="form-control" id="user" name="user" placeholder="Usuario" required>
             </div>
             <div>
-                <input type="password" class="form-control" id="pass" placeholder="Password" autocomplete="off" required>
+                <input type="password" class="form-control" id="pass" name="pass" placeholder="Password" autocomplete="off" required>
             </div>
             <div>
                 <input class="btn form-control" type="submit" id="btnIngresar">
@@ -28,7 +28,19 @@
     <footer>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="/js/login.js"></script>
     </footer>
+    <% if (typeof alert != "undefined")  { %>
+        <script>
+        Swal.fire({
+          title:'<%= alertTitle %>',
+          text:'<%= alertMessage %>',
+          icon:'<%= alertIcon %>',
+          showConfirmButton: <%= showConfirmButton %>,
+          timer: <%= timer %>
+        }).then(()=>{
+          window.location='/<%= ruta %>'
+        })
+        </script>
+      <% } %>
 </body>
 </html>
