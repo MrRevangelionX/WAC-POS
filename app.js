@@ -39,9 +39,9 @@ app.get('/', (req, res)=>{
             if(error){
                 throw error
             }
-            results.forEach(result => {
-                console.log(result);
-            });
+            // results.forEach(result => {
+            //     console.log(result);
+            // });
             res.render('index', {
                 Botones: results
             });
@@ -57,7 +57,7 @@ app.get('/login', (req, res)=>{
 app.post('/auth', (req, res)=>{
     const user = req.body.user;
     const pass = req.body.pass;
-    console.log("Usuario: " + user + " " + "Password: " + pass);
+    // console.log("Usuario: " + user + " " + "Password: " + pass);
     if (user && pass) {
 		connection.query('SELECT * FROM WAC.wac_usuarios WHERE username = ? AND pass = ?;', [user, pass], (err, results, fields)=> {
             if(err){
@@ -74,7 +74,7 @@ app.post('/auth', (req, res)=>{
                             ruta: 'login'    
                         });
                 }else{
-                    console.log("SI LOGGUEO");
+                    // console.log("SI LOGGUEO");
                     req.session.auth_token = true;
                     req.session.name = results[0].username
                     req.session.name = results[0].usrName
@@ -105,7 +105,7 @@ app.use(function(req, res, next) {
 //Destruye la sesión.
 app.get('/logout', function (req, res) {
 	req.session.destroy(() => {
-	  res.redirect('/') // siempre se ejecutará después de que se destruya la sesión
+	    res.redirect('/')
 	})
 });
 

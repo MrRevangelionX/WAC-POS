@@ -12,22 +12,10 @@
         display: flex;
         justify-content: space-between;
     }
+    
     .header_logo{
         width: 30vw;
         position: relative;
-    }
-
-    .header_btn{
-        font: bold 11px Arial;
-        text-decoration: none;
-        background-color: #EEEEEE;
-        color: #fff;
-        padding: 20px 60px 20px 60px;
-        border: 1px solid #fff;
-        border-radius: 10px;
-        height: 15%;
-        margin: auto;
-        text-align: center;
     }
     
     .container{
