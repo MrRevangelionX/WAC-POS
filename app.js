@@ -50,6 +50,7 @@ app.get('/', (req, res)=>{
         res.redirect('/login')
     }
 })
+
 app.get('/login', (req, res)=>{
     res.render('login')
 })
@@ -94,6 +95,22 @@ app.post('/auth', (req, res)=>{
 	}
 })
 
+app.get('/mesas', (req, res)=>{
+    if (req.session.auth_token) {
+        connection.query('SELECT * FROM wac_mesas', function(error,results,fields){
+            if(error){
+                throw error
+            }
+            // results.forEach(result => {
+            //     console.log(result);
+            // });
+            res.render('mesas', {
+                Mesas: results
+            });
+        })
+    }
+})
+
 //función para limpiar la caché luego del logout
 app.use(function(req, res, next) {
     if (!req.user)
@@ -101,7 +118,7 @@ app.use(function(req, res, next) {
     next();
 });
 
- //Logout
+//Logout
 //Destruye la sesión.
 app.get('/logout', function (req, res) {
 	req.session.destroy(() => {

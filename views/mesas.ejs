@@ -10,21 +10,18 @@
 <body>
     <header>
         <img src="/img/logo.jpg" alt="Wings and Chunks" class="header_logo">
-        <a href="/logout" class="header_btn">Salir</a>
+        <button class="btn-danger" id="btnSalir">Regresar</button>
     </header>
     <main class="container" id="main">
-        <!-- <h2>Página de Inicio</h2> -->
-        <% Botones.forEach((boton)=>{ %>
-        <div class="card">
-            <button class="btn btn-warning" id='btn_<%- boton.id %>'><%- boton.name %></button>
-        </div>
+        <% Mesas.forEach((mesa)=>{ %>
+            <button class="btn btn-warning <%- mesa.mesa_status %>" id='btn_<%- mesa.mesa_id %>' onclick="ActivarMesa(<%- mesa.mesa_id %>)"> Mesa <%- mesa.mesa_id %><br><img src="/img/mesa.png" alt="Mesa"> </button>
         <% }); %>
     </main>
     <footer>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script src="/js/index.js"></script>
+        <script src="/js/mesas.js"></script>
     </footer>
 </body>
 </html>

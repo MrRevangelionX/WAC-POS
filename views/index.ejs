@@ -10,14 +10,12 @@
 <body>
     <header>
         <img src="/img/logo.jpg" alt="Wings and Chunks" class="header_logo">
-        <a href="/logout" class="header_btn">Salir</a>
+        <button class="btn-danger" id="btnSalir">Salir</button>
     </header>
     <main class="container" id="main">
         <!-- <h2>Página de Inicio</h2> -->
         <% Botones.forEach((boton)=>{ %>
-        <div class="card">
             <button class="btn btn-warning" id='btn_<%- boton.id %>'><%- boton.name %></button>
-        </div>
         <% }); %>
     </main>
     <footer>
