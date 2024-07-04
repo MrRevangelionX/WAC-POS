@@ -111,6 +111,22 @@ app.get('/mesas', (req, res)=>{
     }
 })
 
+app.get('/inventario', (req, res)=>{
+    if (req.session.auth_token) {
+        connection.query('SELECT * FROM wac_inventario', function(error,results,fields){
+            if(error){
+                throw error
+            }
+            // results.forEach(result => {
+            //     console.log(result);
+            // });
+            res.render('inventario', {
+                Items: results
+            });
+        })
+    }
+})
+
 //función para limpiar la caché luego del logout
 app.use(function(req, res, next) {
     if (!req.user)

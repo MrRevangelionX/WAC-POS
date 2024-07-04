@@ -1,10 +1,15 @@
 const salir = document.getElementById('btnSalir');
-const pedidos = document.getElementById('btn_1');
+const mesas = document.getElementById('btn_1');
+const inventario = document.getElementById('btn_2');
 
 salir.addEventListener('click', ()=>{
     window.location.href = '/logout'
 })
 
-pedidos.addEventListener('click', ()=>{
+mesas.addEventListener('click', ()=>{
     window.location.href = '/mesas';
+})
+
+inventario.addEventListener('click', ()=>{
+    window.location.href = '/inventario';
 })
