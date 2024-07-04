@@ -29,17 +29,27 @@ a{
 
 .container{
     width: 90%;
-    height: 60vh;
+
     margin: 25px auto;
     border: 1px solid #ffffff;
     background-color: #1D1D1B;
     border-radius: 25px;
-    box-shadow: 0 0 10px 5px #FF7602;
     color: #ffffff;
 
     display: flex;
     justify-content: center;
     overflow: hidden;
+}
+
+.btn-success{
+    width: 200px;
+    height: 75px;
+    background-color: #00ff00 !important;
+    color: #000000;
+    border-radius: 10px;
+    font-weight: bolder;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
 }
 
 .btn-danger{
