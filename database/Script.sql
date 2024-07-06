@@ -57,6 +57,6 @@ CREATE TABLE WAC.wac_inventario(
 );
 
 INSERT INTO wac_inventario (item_name,item_description,item_unit_messure,item_category,item_sub_cat,item_unit_price,item_existence)
-VALUES ('Pulled Pork Burger','Cerdo mechado en salsa BBQ, queso americano sobre una cama de lechuga, tomate, cebolla y pepinillo','Unidad','Hambuerguesas','Hamburguesas',7.99,0);
+VALUES ('Prociutto Estelar','','Unidad','Pizzas','Pizzas',10.99,0);
 
 SELECT * FROM wac_inventario;

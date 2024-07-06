@@ -14,7 +14,7 @@
     </header>
     <main class="container" id="main">
         <% Mesas.forEach((mesa)=>{ %>
-            <button class="btn btn-warning <%- mesa.mesa_status %>" id='btn_<%- mesa.mesa_id %>' onclick="ActivarMesa(<%- mesa.mesa_id %>)"> Mesa <%- mesa.mesa_id %><br><img src="/img/mesa.png" alt="Mesa"> </button>
+            <button class="btn btn-warning <%- mesa.mesa_status %>" id="<%- mesa.mesa_id %>" onclick="MesaClick(<%- mesa.mesa_id %>, '<%- mesa.mesa_status %>')">Mesa <%- mesa.mesa_id %><br><img src="/img/mesa.png" alt="Mesa"></button>
         <% }); %>
     </main>
     <footer>

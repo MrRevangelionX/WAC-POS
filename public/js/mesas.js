@@ -3,6 +3,7 @@ btnSalir.addEventListener('click',()=>{
     window.location.href = '/';
 })
 
-function ActivarMesa(button_id){
-    console.log(button_id);
+function MesaClick(mesaID, mesaStatus){
+    console.log('Mesa ' + mesaID);
+    location.href='/menu?id=' + mesaID + '&status=' + mesaStatus;
 }

@@ -101,9 +101,6 @@ app.get('/mesas', (req, res)=>{
             if(error){
                 throw error
             }
-            // results.forEach(result => {
-            //     console.log(result);
-            // });
             res.render('mesas', {
                 Mesas: results
             });
@@ -117,15 +114,29 @@ app.get('/inventario', (req, res)=>{
             if(error){
                 throw error
             }
-            // results.forEach(result => {
-            //     console.log(result);
-            // });
             res.render('inventario', {
                 Items: results
             });
         })
     }
 })
+
+
+app.get('/menu', (req, res)=>{
+    if (req.session.auth_token) {
+        res.render('menu');
+    }
+})
+
+app.put('/menu/:id', (req, res)=>{
+    if(req.session.auth_token){
+       const id = req.params.id;
+       connection.query("UPDATE WAC.wac_mesas SET mesas_status = 'Ocupada' WHERE mesa_id ='" + id, (err, resp, fields)=>{
+        res.send("Actualizado correctamente!");
+       });
+    }
+})
+
 
 //función para limpiar la caché luego del logout
 app.use(function(req, res, next) {
