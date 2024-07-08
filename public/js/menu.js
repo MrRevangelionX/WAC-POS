@@ -13,11 +13,25 @@ const myStatus = param2[1];
 const mesa = document.getElementById('Mesa');
 mesa.innerText = 'Mesa ' + myID;
 
-if (myStatus=='Libre'){
-    const main = document.getElementById('main');
-    main.innerHTML = "<button type='button' class='btn btn-success' id='OpenTable' onclick='openTable(myID)'>Aperturar Mesa</button>";
+let botonesHTML = '';
+if (myStatus=='Libre') {
+  botonesHTML = `<button onclick="aperturarMesa(${myID})">Aperturar Mesa</button>`;
+} else {
+  botonesHTML = `<a href="/mesa/${myID}/hamburguesas" class="table-button">Hamburguesas</a>`;
 }
 
-function openTable(id){
-    location.href='/menu/' + id;
-}
+const main = document.getElementById('main');
+main.innerHTML = botonesHTML;
+
+function aperturarMesa(id) {
+    fetch('/mesa/' + id, { method: 'POST' })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('No se pudo aperturar la mesa');
+        }
+        location.reload(); // Recargar la página para actualizar la vista
+      })
+      .catch(error => {
+        console.error('Error al aperturar la mesa:', error);
+      });
+  }

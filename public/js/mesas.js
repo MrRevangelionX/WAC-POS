@@ -5,5 +5,5 @@ btnSalir.addEventListener('click',()=>{
 
 function MesaClick(mesaID, mesaStatus){
     console.log('Mesa ' + mesaID);
-    location.href='/menu?id=' + mesaID + '&status=' + mesaStatus;
+    location.href='/mesa/' + mesaID;
 }

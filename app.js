@@ -58,7 +58,6 @@ app.get('/login', (req, res)=>{
 app.post('/auth', (req, res)=>{
     const user = req.body.user;
     const pass = req.body.pass;
-    // console.log("Usuario: " + user + " " + "Password: " + pass);
     if (user && pass) {
 		connection.query('SELECT * FROM WAC.wac_usuarios WHERE username = ? AND pass = ?;', [user, pass], (err, results, fields)=> {
             if(err){
@@ -77,9 +76,9 @@ app.post('/auth', (req, res)=>{
                 }else{
                     // console.log("SI LOGGUEO");
                     req.session.auth_token = true;
-                    req.session.name = results[0].username
+                    req.session.user = results[0].username
                     req.session.name = results[0].usrName
-                    req.session.name = results[0].usrRole
+                    req.session.role = results[0].usrRole
                     res.render('login', {
                         alert: true,
                         alertTitle: "CORRECTO",
@@ -121,19 +120,21 @@ app.get('/inventario', (req, res)=>{
     }
 })
 
+app.post('/mesa/:id', (req, res)=>{
+    const { id } = req.params;
+    if(req.session.auth_token){
+       connection.query("UPDATE WAC.wac_mesas SET mesa_status = 'Libre' WHERE mesa_id = ?;", [id], (err, resp, fields)=>{
+        if(err){
+            throw err;
+        }
+        res.render("menu");
+       });
+    }
+})
 
 app.get('/menu', (req, res)=>{
     if (req.session.auth_token) {
         res.render('menu');
-    }
-})
-
-app.put('/menu/:id', (req, res)=>{
-    if(req.session.auth_token){
-       const id = req.params.id;
-       connection.query("UPDATE WAC.wac_mesas SET mesas_status = 'Ocupada' WHERE mesa_id ='" + id, (err, resp, fields)=>{
-        res.send("Actualizado correctamente!");
-       });
     }
 })
 

@@ -36,6 +36,8 @@ INSERT INTO wac_mesas (mesa_area, mesa_status) values ('Terraza', 'Ocupada');
 
 SELECT * FROM wac_mesas;
 
+UPDATE WAC.wac_mesas SET mesa_status = 'Libre' WHERE mesa_id = 2;
+
 CREATE TABLE WAC.wac_mesas_movimientos(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	mesa_id INT,
