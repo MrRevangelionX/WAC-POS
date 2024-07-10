@@ -22,8 +22,9 @@
                   <th scope="col">ID</th>
                   <th scope="col">Nombre</th>
                   <th scope="col">Categoria</th>
-                  <th scope="col">Precio Unitario</th>
+                  <th scope="col">Unidad de Medida</th>
                   <th scope="col">Existencia</th>
+                  <th scope="col">Precio Unitario</th>
                 </tr>
               </thead>
               <tbody>
@@ -32,8 +33,9 @@
                     <th scope="row"><%-item.item_id%></th>
                     <td><%-item.item_name%></td>
                     <td><%-item.item_category%></td>
-                    <td>$<%-item.item_unit_price%></td>
+                    <td><%-item.item_unit_messure%></td>
                     <td><%=item.item_existence%></td>
+                    <td>$<%-item.item_unit_price%></td>
                   </tr>
                 <% }); %>
               </tbody>

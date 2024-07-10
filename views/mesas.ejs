@@ -14,7 +14,7 @@
     </header>
     <main class="container" id="main">
         <% Mesas.forEach((mesa)=>{ %>
-            <button class="btn btn-warning <%- mesa.mesa_status %>" id="<%- mesa.mesa_id %>" onclick="MesaClick(<%- mesa.mesa_id %>, '<%- mesa.mesa_status %>')">Mesa <%- mesa.mesa_id %><br><img src="/img/mesa.png" alt="Mesa"></button>
+            <a href="/mesa/<%- mesa.mesa_id %>" class="btn btn-warning <%- mesa.mesa_status %>" id="<%- mesa.mesa_id %>">Mesa <%- mesa.mesa_id %><br><img src="/img/mesa.png" alt="Mesa"></a>
         <% }); %>
     </main>
     <footer>
@@ -23,5 +23,16 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script src="/js/mesas.js"></script>
     </footer>
+    <% if (typeof alert != "undefined")  { %>
+        <script>
+            Swal.fire({
+                title:'<%= alertTitle %>',
+                text:'<%= alertMessage %>',
+                icon:'<%= alertIcon %>',
+                showConfirmButton: <%= showConfirmButton %>,
+                timer: <%= timer %>
+            })
+        </script>
+    <% } %>
 </body>
 </html>

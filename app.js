@@ -86,7 +86,7 @@ app.post('/auth', (req, res)=>{
                         alertIcon:'success',
                         showConfirmButton: false,
                         timer: 1500,
-                        ruta: ''    
+                        ruta: ''
                     });
                 }
             }
@@ -107,6 +107,43 @@ app.get('/mesas', (req, res)=>{
     }
 })
 
+app.get('/mesa/:id', (req, res)=>{
+    const { id } = req.params;
+    if(req.session.auth_token){
+        connection.query("UPDATE wac_mesas SET mesa_status = 'Ocupada' WHERE mesa_id = ?;", [id], (err, resp, fields)=>{
+            if(err){
+                throw err;
+            }
+            res.render('menu', {
+                alert: true,
+                alertTitle: "MESA ABIERTA",
+                alertMessage: "Mesa se aperturo Correctamente",
+                alertIcon:'success',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        });
+    }
+})
+
+app.get('/closeTable/:id', (req, res)=>{
+    const { id } = req.params;
+    if(req.session.auth_token){
+       connection.query("UPDATE wac_mesas SET mesa_status = 'Libre' WHERE mesa_id = ?;", [id], (err, resp, fields)=>{
+        if(err){
+            throw err;
+        }
+        res.redirect('/mesas')
+        });
+    }
+})
+
+app.get('/menu', (req, res)=>{
+    if (req.session.auth_token) {
+        res.render('menu');
+    }
+})
+
 app.get('/inventario', (req, res)=>{
     if (req.session.auth_token) {
         connection.query('SELECT * FROM wac_inventario', function(error,results,fields){
@@ -120,23 +157,7 @@ app.get('/inventario', (req, res)=>{
     }
 })
 
-app.post('/mesa/:id', (req, res)=>{
-    const { id } = req.params;
-    if(req.session.auth_token){
-       connection.query("UPDATE WAC.wac_mesas SET mesa_status = 'Libre' WHERE mesa_id = ?;", [id], (err, resp, fields)=>{
-        if(err){
-            throw err;
-        }
-        res.render("menu");
-       });
-    }
-})
 
-app.get('/menu', (req, res)=>{
-    if (req.session.auth_token) {
-        res.render('menu');
-    }
-})
 
 
 //función para limpiar la caché luego del logout

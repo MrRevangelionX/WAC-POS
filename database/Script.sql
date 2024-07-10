@@ -32,7 +32,7 @@ CREATE TABLE WAC.wac_mesas (
 	mesa_status VARCHAR(100)
 );
 
-INSERT INTO wac_mesas (mesa_area, mesa_status) values ('Terraza', 'Ocupada');
+INSERT INTO wac_mesas (mesa_area, mesa_status) values ('Terraza', 'Libre');
 
 SELECT * FROM wac_mesas;
 
