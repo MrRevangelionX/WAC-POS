@@ -8,32 +8,61 @@
     <link rel="stylesheet" href="/css/menu.css">
 </head>
 <body>
-    <header>
-        <img src="/img/logo.jpg" alt="Wings and Chunks" class="header_logo">
-        <h2 id="Mesa"></h2>
-        <button class="btn-danger" id="btnSalir">Regresar</button>
-    </header>
-    <main class="container" id="main">
-        
-    </main>
-    <br>
-    <button id="clearMesa" class="btn btn-danger">Cerrar Mesa</button>
-    <footer>
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script src="/js/menu.js"></script>
-    </footer>
-    <% if (typeof alert != "undefined")  { %>
-        <script>
-            Swal.fire({
-                title:'<%= alertTitle %>',
-                text:'<%= alertMessage %>',
-                icon:'<%= alertIcon %>',
-                showConfirmButton: <%= showConfirmButton %>,
-                timer: <%= timer %>
-            })
-        </script>
-    <% } %>
+    <div class="menu">
+        <button class="menu-btn" onclick="showCategory('cat1')">
+            <img src="/img/Wings.png" alt="Categoría 1" class="btn-image">
+        </button>
+        <button class="menu-btn" onclick="showCategory('cat2')">
+            <img src="/img/Burger.png" alt="Categoría 2" class="btn-image">
+        </button>
+        <button class="menu-btn" onclick="showCategory('cat3')">
+            <img src="/img/Pizza.png" alt="Categoría 3" class="btn-image">
+        </button>
+        <button class="menu-btn" onclick="showCategory('cat4')">
+            <img src="/img/Cerveza.png" alt="Categoría 4" class="btn-image">
+        </button>
+    </div>
+    <div class="container">
+        <div class="content">
+            <h2 id="Mesa" style="text-align: center;"></h2>
+            <div id="cat1" class="category" style="display: none;">
+                <button class="note-btn" onclick="addNoteToList('Nota 1')">Nota 1</button>
+                <button class="note-btn" onclick="addNoteToList('Nota 2')">Nota 2</button>
+                <button class="note-btn" onclick="addNoteToList('Nota 3')">Nota 3</button>
+                <button class="note-btn" onclick="addNoteToList('Nota 4')">Nota 4</button>
+                <button class="note-btn" onclick="addNoteToList('Nota 5')">Nota 5</button>
+                <button class="note-btn" onclick="addNoteToList('Nota 6')">Nota 6</button>
+                <button class="note-btn" onclick="addNoteToList('Nota 7')">Nota 7</button>
+                <button class="note-btn" onclick="addNoteToList('Nota 8')">Nota 8</button>
+            </div>
+            <div id="cat2" class="category" style="display: none;">
+                <button class="note-btn" onclick="addNoteToList('Nota 9')">Nota 9</button>
+                <button class="note-btn" onclick="addNoteToList('Nota 10')">Nota 10</button>
+                <!-- Añade más botones según sea necesario -->
+            </div>
+            <div id="cat3" class="category" style="display: none;">
+                <button class="note-btn" onclick="addNoteToList('Nota 11')">Nota 11</button>
+                <button class="note-btn" onclick="addNoteToList('Nota 12')">Nota 12</button>
+                <!-- Añade más botones según sea necesario -->
+            </div>
+            <div id="cat4" class="category" style="display: none;">
+                <button class="note-btn" onclick="addNoteToList('Nota 13')">Nota 13</button>
+                <button class="note-btn" onclick="addNoteToList('Nota 14')">Nota 14</button>
+                <!-- Añade más botones según sea necesario -->
+            </div>
+        </div>
+        <div class="note-list">
+            <button class="list-btn" id="btnSalir">Regresar</button>
+            <button onclick="saveNotes()" class="list-btn">Guardar Pedido</button>
+            <button onclick="clearNotes()" class="list-btn">Limpiar Pedido</button>
+            <button class="list-btn" id="clearMesa">Cerrar Mesa</button>
+            <hr>
+            <br>
+            <h3>Listado de Notas</h3>
+            <div>Total: $<span id="totalValue">0.00</span></div>
+            <ul id="noteList"></ul>
+        </div>
+    </div>
+    <script src="/js/menu.js"></script>
 </body>
 </html>

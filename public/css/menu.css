@@ -1,101 +1,154 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
-
-body{
-    font-family: 'Poppins', sans-serif;
-    background-color: #1D1D1B;
-    color: #ffffff;
-    margin: 0;
-    padding: 0;
-}
-
-header{
-    background-color: #1D1D1B;
-    overflow: hidden;
-
+body {
+    font-family: Arial, sans-serif;
     display: flex;
-    height: 25vh;
-
-    align-items: center;
-    justify-content: space-around;
-}
-
-.header_logo{
-    height: 100%;
-}
-
-a{
-    text-decoration: none;
-    text-align: center;
-}
-
-.container{
-    width: 90%;
-    height: 60vh;
-    margin: 25px auto;
-    border: 1px solid #ffffff;
+    height: 100vh;
+    margin: 0;
     background-color: #1D1D1B;
-    border-radius: 25px;
-    box-shadow: 0 0 10px 5px #FF7602;
     color: #ffffff;
-    text-align: center;
+}
 
+.menu {
+    width: 300px;
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+.menu-btn {
+    width: 180px;
+    height: 180px;
+    margin: 10px 0;
+    background-color: #444;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.menu-btn img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.menu-btn:hover {
+    background-color: #555;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
     display: flex;
     flex-wrap: wrap;
-    align-content: flex-start;
-    overflow: hidden;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #1D1D1B;
+    box-sizing: border-box;
+    background-image: url('../img/logo.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50vw;
 }
 
-.btn{
+.category{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.note-btn {
     margin: 10px;
-    border-radius: none;
+    padding: 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
     cursor: pointer;
-    flex-basis: 100px;
-    flex-grow: 1;
+    flex: 1 1 calc(50% - 20px);
+    box-sizing: border-box;
+    text-align: center;
 }
 
-.btn-success{
-    width: 100%;
-    height: 20%;
-    background-color: #ff6600;
-    color: #ffffff;
-    border-radius: 10px;
-    font-weight: bolder;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
+.note-btn:hover {
+    background-color: #2980b9;
 }
 
-.btn-warning{
-    width: 100%;
-    height: 20%;
-    background-color: #FF7602;
-    color: #ffffff;
-    border-radius: 10px;
-    font-weight: bolder;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-}
-
-.btn-danger{
-    width: 200px;
-    height: 75px;
-    background-color: #ff0000;
-    color: #ffffff;
-    border-radius: 10px;
-    font-weight: bolder;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-}
-
-.Libre{
+.note-list {
     width: 300px;
-    height: 150px;
-    background-color: #00ff00;
-    color: #000000;
+    background-color: #2e2e2e;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
 }
 
-.Ocupada{
-    width: 300px;
-    height: 150px;
-    background-color: #ff0000;
-    color: #ffffff;
+.note-list h3 {
+    margin-top: 0;
+    color: #ecf0f1;
+}
+
+.note-list ul {
+    list-style-type: none;
+    padding: 0;
+    color: #ecf0f1;
+}
+
+.note-list li {
+    padding: 10px;
+    background-color: #444;
+    margin-bottom: 10px;
+}
+
+.list-btn {
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.list-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Media Queries */
+@media (max-width: 965px) {
+    .menu {
+        width: 100px;
+    }
+
+    .menu-btn {
+        width: 80px;
+        height: 80px;
+    }
+
+    .container {
+        margin-left: 100px;
+        margin-right: 250px;
+    }
+
+    .note-list {
+        width: 250px;
+    }
 }
