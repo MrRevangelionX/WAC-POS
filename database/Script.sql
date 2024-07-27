@@ -47,7 +47,7 @@ CREATE TABLE WAC.wac_mesas_movimientos(
 
 SELECT * FROM wac_mesas_movimientos;
 
-CREATE TABLE WAC.wac_inventario(
+CREATE TABLE WAC.wac_productos(
 	item_id INT AUTO_INCREMENT PRIMARY KEY,
 	item_name VARCHAR(100),
 	item_description VARCHAR(255),
@@ -58,7 +58,7 @@ CREATE TABLE WAC.wac_inventario(
 	item_existence INT
 );
 
-INSERT INTO wac_inventario (item_name,item_description,item_unit_messure,item_category,item_sub_cat,item_unit_price,item_existence)
+INSERT INTO wac_productos (item_name,item_description,item_unit_messure,item_category,item_sub_cat,item_unit_price,item_existence)
 VALUES ('Prociutto Estelar','','Unidad','Pizzas','Pizzas',10.99,0);
 
-SELECT * FROM wac_inventario;
+SELECT * FROM wac_productos;

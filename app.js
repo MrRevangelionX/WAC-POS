@@ -146,7 +146,7 @@ app.get('/menu', (req, res)=>{
 
 app.get('/inventario', (req, res)=>{
     if (req.session.auth_token) {
-        connection.query('SELECT * FROM wac_inventario', function(error,results,fields){
+        connection.query('SELECT * FROM wac_productos', function(error,results,fields){
             if(error){
                 throw error
             }
@@ -156,6 +156,21 @@ app.get('/inventario', (req, res)=>{
         })
     }
 })
+
+// Ruta para obtener productos por categoría
+app.get('/productos/:categoria', (req, res) => {
+    const categoria = req.params.categoria;
+    const query = 'SELECT item_name, item_unit_price FROM wac_productos WHERE item_category = ?';
+
+    connection.query(query, [categoria], (err, results) => {
+        if (err) {
+            console.error('Error al ejecutar la consulta:', err);
+            res.status(500).send('Error en el servidor');
+        } else {
+            res.json(results);
+        }
+    });
+});
 
 
 
